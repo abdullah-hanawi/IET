@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IET Elevators Qatar - مصاعد IET الدوحة</title>
+    
+    <!-- خطوط جوجل (Cairo) -->
+    <link href="https://googleapis.com" rel="stylesheet">
+
+    <style>
+        /* تعريف الألوان كمتغيرات لسهولة التعديل */
+        :root {
+            --turquoise: #1abc9c;    /* فيروزي */
+            --off-white: #fdfaf0;    /* سكري */
+            --gold: #d4af37;         /* ذهبي */
+            --dark-turquoise: #16a085;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--off-white);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* شريط التنقل */
+        nav {
+            background-color: var(--turquoise);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--off-white);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--off-white);
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* الصفحة الرئيسية - البانر */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(45deg, rgba(26, 188, 156, 0.9), rgba(253, 250, 240, 0.2)), 
+                        url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 12rem; /* خط كبير جداً */
+            font-weight: 900;
+            color: var(--off-white);
+            text-shadow: 8px 8px 0px var(--gold); /* ظل ذهبي بارز */
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hero p {
+            font-size: 2rem;
+            color: var(--off-white);
+            background: var(--turquoise);
+            padding: 5px 20px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+
+        .btn-qatar {
+            background-color: var(--gold);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+            text-decoration: none;
+        }
+
+        .btn-qatar:hover {
+            background-color: #b8972f;
+            transform: translateY(-5px);
+        }
+
+        /* الأقسام (الصفحات الداخلية) */
+        .page-section {
+            padding: 100px 10%;
+            min-height: 80vh;
+            display: none; /* مخفية افتراضياً للتنقل بين الصفحات */
+        }
+
+        .page-section.active {
+            display: block;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .section-title {
+            color: var(--turquoise);
+            font-size: 2.5rem;
+            border-bottom: 4px solid var(--gold);
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        /* الأنيميشن */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* استجابة الهواتف */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 6rem; }
+            .nav-links { display: none; } /* للتبسيط في العرض */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط التنقل -->
+    <nav>
+        <div class="logo">IET QATAR</div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')">الرئيسية</a></li>
+            <li><a href="#" onclick="showPage('about')">من نحن</a></li>
+            <li><a href="#" onclick="showPage('services')">خدماتنا</a></li>
+            <li><a href="#" onclick="showPage('contact')">اتصل بنا</a></li>
+        </ul>
+    </nav>
+
+    <!-- الصفحة الرئيسية -->
+    <header id="home" class="hero page-section active">
+        <h1>IET</h1>
+        <p>الريادة في عالم المصاعد - الدوحة، قطر</p>
+        <a href="#" class="btn-qatar" onclick="showPage('services')">اكتشف حلولنا</a>
+    </header>
+
+    <!-- صفحة من نحن -->
+    <section id="about" class="page-section">
+        <h2 class="section-title">من نحن</h2>
+        <p style="font-size: 1.2rem;">تعد شركة <strong>IET</strong> من الشركات الرائدة في دولة قطر المتخصصة في توريد وتركيب وصيانة المصاعد والسلالم المتحركة بأحدث التقنيات العالمية التي تضمن الرفاهية والأمان.</p>
+    </section>
+
+    <!-- صفحة الخدمات -->
+    <section id="services" class="page-section">
+        <h2 class="section-title">خدماتنا في الدوحة</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div style="background: white; padding: 20px; border-top: 5px solid var(--gold); box-shadow: 0 4px;">
+                <h3>مصاعد بانوراما</h3>
+                <p>إطلالة مميزة تضفي لمسة جمالية على المباني التجارية والفلل.</p>
+            </div>
+            <div style="background: white; padding: 20px; border-top: 5px solid var(--gold); box-shadow: 0 4px;">
+                <h3>صيانة دورية</h3>
+                <p>فريق فني متخصص متاح على مدار الساعة لخدمتكم في الدوحة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- صفحة الاتصال -->
+    <section id="contact" class="page-section">
+        <h2 class="section-title">تواصل معنا</h2>
+        <p>الموقع: برج الدوحة، الخليج الغربي، قطر</p>
+        <p>هاتف: 974XXXXXXXX+</p>
+        <p>البريد: info@iet-qatar.com</p>
+    </section>
+
+    <script>
+        // وظيفة التبديل بين الصفحات بدون تحميل المتصفح
+        function showPage(pageId) {
+            // إخفاء جميع الأقسام
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // إظهار القسم المطلوب
+            const activeSection = document.getElementById(pageId);
+            activeSection.classList.add('active');
+
+            // التمرير لأعلى الصفحة
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
